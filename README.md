@@ -2,9 +2,11 @@
 
 ![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)
 
-CLI para consultar el clima actual de cualquier ciudad usando la API gratuita de [Open-Meteo](https://open-meteo.com/) — sin API key.
+Consulta el clima actual de cualquier ciudad usando la API gratuita de [Open-Meteo](https://open-meteo.com/) — sin API key. Disponible como CLI y como API REST.
 
-## Uso
+---
+
+## CLI
 
 ```bash
 python3 clima.py <ciudad>
@@ -12,7 +14,7 @@ python3 clima.py "San Felipe, Chile"
 python3 clima.py "Buenos Aires, Argentina"
 ```
 
-## Ejemplo
+**Ejemplo de salida:**
 
 ```
 Clima actual en San Felipe, Chile
@@ -24,7 +26,61 @@ Clima actual en San Felipe, Chile
   Actualizacion:  2026-05-07T15:45
 ```
 
+---
+
+## API REST
+
+### Instalación
+
+```bash
+pip install -r requirements.txt
+```
+
+### Iniciar servidor
+
+```bash
+python3 -m uvicorn api:app --port 8000
+```
+
+### Endpoints
+
+#### `GET /weather`
+
+| Parámetro | Tipo   | Descripción                          |
+|-----------|--------|--------------------------------------|
+| `city`    | string | Nombre de ciudad, ej: `San Felipe, Chile` |
+
+**Ejemplo:**
+
+```bash
+curl "http://localhost:8000/weather?city=San+Felipe,+Chile"
+```
+
+**Respuesta:**
+
+```json
+{
+  "city": "San Felipe",
+  "country": "Chile",
+  "latitude": -32.74976,
+  "longitude": -70.72584,
+  "condition": "Despejado",
+  "temperature_c": 16.3,
+  "feels_like_c": 13.0,
+  "humidity_pct": 38,
+  "wind_kmh": 10.5,
+  "updated_at": "2026-05-07T16:00"
+}
+```
+
+#### `GET /docs`
+
+Documentación interactiva (Swagger UI) en `http://localhost:8000/docs`.
+
+---
+
 ## Requisitos
 
 - Python 3.x
-- Sin dependencias externas (solo stdlib)
+- CLI: sin dependencias externas (solo stdlib)
+- API: `fastapi`, `uvicorn` (ver `requirements.txt`)

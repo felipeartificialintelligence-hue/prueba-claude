@@ -1,5 +1,7 @@
 # clima.py
 
+![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)
+
 CLI para consultar el clima actual de cualquier ciudad usando la API gratuita de [Open-Meteo](https://open-meteo.com/) — sin API key.
 
 ## Uso

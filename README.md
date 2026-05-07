@@ -79,6 +79,21 @@ Documentación interactiva (Swagger UI) en `http://localhost:8000/docs`.
 
 ---
 
+---
+
+## Docker
+
+### Build y run
+
+```bash
+docker build -t clima-api .
+docker run -p 8000:8000 clima-api
+```
+
+La API quedará disponible en `http://localhost:8000`.
+
+---
+
 ## Requisitos
 
 - Python 3.x
